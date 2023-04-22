@@ -1,0 +1,162 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>menu pizza mama</title>
+    <style>
+       /*  body{
+          background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://media.istockphoto.com/id/1247815637/vector/pizza-slices-ingredients-black-textured-backround.jpg?s=612x612&w=0&k=20&c=6f2c3bl5xcksZJlWyBE5hx1yZ4wp8U03ZdlkeINVCMk=") no-repeat center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          margin-bottom: 4%;
+          font-family: Cambria;
+      }
+ */
+
+      .mama{
+        border: solid 1px whitesmoke;
+        font-weight: bold;
+        display: inline-block;
+        padding: 20px 130px 0px 130px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: whitesmoke;
+        font-size: large;
+        text-shadow: 2px 3px 2px #030303;
+        background-color: rgba(29, 28, 27, 0.7);
+      }
+
+      .slogan{
+        display: inline-block;
+        margin-top: 0px;
+        font-family: 'Courier New', Courier, monospace;
+        color: rgb(245, 241, 1);
+        text-transform:capitalize;
+        text-shadow: 2px 2x 4px #fafafb;
+        font-size: small;
+        font-weight: normal;
+      }
+      h1{
+        font-family: 'Courier New', Courier, monospace;
+        display: inline-block;
+        color: whitesmoke;
+        font-size: large;
+        background-color: rgb(250, 127, 3);
+        padding: 15px 25px;
+        font-weight: normal;
+      }
+
+      .menu_list{
+        width: fit-content;
+        background-color: rgba(29, 28, 27, 0.8);
+        padding: 20px;
+        margin-top: -35px;
+      }
+
+      .menu_list_item{
+        margin: 35px 0px;
+      }
+
+      .menu_list_title{
+        display: inline-block;
+        text-align: left;
+        color: whitesmoke;
+        border-bottom: dotted 1px whitesmoke;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 22px;
+        font-family: Cambria;
+        width: 350px;
+      }
+
+      .menu_list_prix{
+        font-size: 12px;
+        color: rgb(247, 251, 251);
+        margin-left: 8px;
+        font-style: italic;
+        display: inline-block;
+        width: 160px;
+        height: 4%;
+        font-weight: bold;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        text-align: center;
+        background-color: rgb(250, 127, 3);
+        border-radius: 50%;
+        padding-top: 6px;
+        padding-bottom: 4px;
+      }
+
+      .menu_list_ingredient{
+        font-style: oblique;
+        font-family: Cambria;
+        font-size: 15px;
+        color: white;
+        opacity: 0.7;
+        display: block;
+        margin-top: 0px;
+        width: 360px;
+        text-transform: capitalize;
+      }
+
+      .badge{
+        display: inline-block;
+        background-color:black;
+        color: whitesmoke;
+        margin-top: -30px;
+        padding: 5px 11px;
+        border-radius: 15px;
+        text-transform: lowercase;
+      }
+
+      .commande{
+        background-color: rgb(247, 130, 5);
+        display: inline-block;
+        color: rgb(3, 4, 3);
+        text-decoration: none;
+        font-size: 20px;
+        padding: 10px;
+        border: solid 2px rgb(250, 248, 250);
+        margin: -22px 0px -30px 0px;
+      }
+
+      .commande:hover{
+        background-color: blue;
+        display: inline-block;
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        padding: 10px;
+        border: solid 2px rgb(250, 248, 250);
+        margin: -22px 0px -30px 0px;
+      }
+
+    </style>
+
+</head>
+<body>
+    <center>
+      <div>
+        <a href="{% url 'main:index' %}" class="mama">P i z z a &nbsp;&nbsp  m a m a <br><p class="slogan">De bons ingredients, de bons pizzas !</p></a>
+    </div>
+    <div class="menu_title">
+        <h1>Liste de nos pizzas</h1>
+    </div>
+
+    <div class="menu_list">
+        {% for pizza in pizzas %}
+            <div class="menu_list_item">
+                <span class="menu_list_title">{{pizza.nom}}</span>
+                <span class="menu_list_prix">{{pizza.prix | floatformat:2}} fcfa</span>
+                <span class="menu_list_ingredient">{{pizza.ingredient}}</span>
+            </div>
+            {% if pizza.vegetarienne == True %}
+                <span class="badge">végétarienne</span>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+        <a href="{% url 'commande:index' %}" class="commande">Passer une commande</a> 
+    </center>
+</body>
+</html>
